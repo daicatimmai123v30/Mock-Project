@@ -1,3 +1,8 @@
-ion-icon.icon-user {
+ion-icon.icon-user,ion-icon.icon-cart {
     font-size: 30px;
+}
+.list-items{
+    width: 100%;
+    min-height: 80%;
+    overflow-y: auto;
 }

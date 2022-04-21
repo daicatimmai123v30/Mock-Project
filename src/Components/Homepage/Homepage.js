@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext,useEffect} from 'react'
 import './Homepage.css'
 import Card from '../Card/Card'
+import { USER_LOGIN } from '../../Enum/Constants'
 
 import { AuthContext } from '../../Contexts/AuthContext'
 const Homepage = () => {
-  const { user, dispatch } = useContext(AuthContext)
-
+  const {distpatch,user} = useContext(AuthContext);
+  useEffect(()=>{
+  },[])
   return (
     <div className='homepage container-fluid'>
       <div class='banner'>
