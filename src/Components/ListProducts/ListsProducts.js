@@ -21,15 +21,20 @@ const ListsProducts = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
 
-  const {distpatch,carts} = useContext(AuthContext);
-  console.log(carts)
+  const {distpatch,carts,user} = useContext(AuthContext);
+  const onChangePage=()=>{
+    
+  }
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('PRODUCTS')).splice((Number(search.split('=')[1])-1)*8,8);
     setProducts(response)
   }, [])
 
   const onAddToCart = (product)=>{
-    distpatch(ADD_CART,product)
+    if(user.isAuth)
+      distpatch(ADD_CART,product)
+    else
+      alert('Bạn phải đăng nhập')
   }
 
   return (
@@ -86,10 +91,11 @@ const ListsProducts = () => {
           <Pagination
             count={parseInt(JSON.parse(localStorage.getItem('PRODUCTS')).length/8 + 1)}
             color='secondary'
-            defaultPage={Number(search.split('=')[1])}
+            page={Number(search.split('=')[1])}
             onChange={(event, number) => {
                 navigate(`/Products?pg=${number}`);
-                window.location.reload()
+                const response = JSON.parse(localStorage.getItem('PRODUCTS')).splice((number-1)*8,8);
+                setProducts(response)
             }}
           />
         </Stack>
