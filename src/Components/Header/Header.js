@@ -16,7 +16,7 @@ import './Header.css'
 
 import { useNavigate } from 'react-router'
 import { AuthContext } from '../../Contexts/AuthContext'
-import { ADD_CART,REMOVE_CART } from '../../Enum/Constants'
+import { ADD_CART,REMOVE_CART, USER_LOGOUT } from '../../Enum/Constants'
 
 const Header = () => {
   const [visibleModel, setVisibleModel] = useState(false)
@@ -40,6 +40,11 @@ const Header = () => {
                   Sản phẩm
                 </a>
               </li>
+              <li className='nav-item'>
+                <a className='nav-link' onClick={()=>navigate('/CartPage')}>
+                  Giỏ hàng
+                </a>
+              </li>
             </ul>
             <form className='d-flex'>
               <input
@@ -55,7 +60,7 @@ const Header = () => {
             <form className='d-flex align-items-center'>
               {user.isAuth?(
                <>
-                  <a className='nav-link' href='/'>
+                  <a className='nav-link' onClick={()=>distpatch(USER_LOGOUT)}>
                     Logout
                   </a>
                   <ion-icon
@@ -102,7 +107,7 @@ const Header = () => {
           </Typography>
           <div className='w-75 bg-dark border border-dark'></div>
           <List sx={{ width: '100%', minHeight: '80%', overflowY: 'auto' }}>
-            {carts?.filter(value=>value.idUser===user.info.id?true:false)[0]?.items
+            {carts?.filter(value=>value.idUser===user?.info?.id?true:false)[0]?.items
                   ?.map((value, index) => (
               <ListItem key={index}>
                 <ListItemAvatar>

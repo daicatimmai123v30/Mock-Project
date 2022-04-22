@@ -22,8 +22,8 @@ const AuthContextProvider = ({ children }) => {
   const onAddCart = product => {
     if (carts.length > 0) {
       const findProduct = carts
-        .filter(value => (value.idUser === user.info.id ? true : false))[0]
-        .items.filter(value => (value.id === product.id ? true : false))
+        .filter(value => (value.idUser == user.info.id ? true : false))[0]
+        .items.filter(value =>value.id == product.id?true:false)
       if (findProduct.length > 0) {
         const newCarts = carts.map(value => {
           if (value.idUser === user.info.id) {
@@ -47,10 +47,14 @@ const AuthContextProvider = ({ children }) => {
         setCarts(newCarts)
       } else {
         const newCarts = [...carts]
-        newCarts.push({
-          ...product,
-          amount: 1
-        })
+        newCarts[0].items=[
+          ...newCarts[0].items,
+          {
+            ...product,
+            amount: 1
+          }
+        ]
+        console.log(newCarts)
         setCarts(newCarts)
       }
     } else {
@@ -64,6 +68,7 @@ const AuthContextProvider = ({ children }) => {
         ...product,
         amount: 1
       })
+
       setCarts(newCarts)
     }
   }
@@ -80,7 +85,8 @@ const AuthContextProvider = ({ children }) => {
               if (value.id === product.id) {
                 if (value.amount === 1) return false
                 else return true
-              }
+              }else
+                return true
             })
             .map(value => {
               if (value.id === product.id)
@@ -99,6 +105,7 @@ const AuthContextProvider = ({ children }) => {
           }
         } else return value
       })
+  
       setCarts(newCarts)
     }
   }
