@@ -28,25 +28,33 @@ function SignUp (props) {
     }
     const users = JSON.parse(localStorage.getItem('USERS'))
     if (users == null || users.length == 0) {
-      const newUsers = [user]
-      localStorage.setItem('USERS', JSON.stringify(newUsers));
+      const newUsers = [{ ...user, id: 'user1' }]
+      localStorage.setItem('USERS', JSON.stringify(newUsers))
       setMessages({
         ...messages,
-        text:'Thêm tài khoản thành công',
-        visible:true
+        text: 'Thêm tài khoản thành công',
+        visible: true
       })
     } else {
-      const findUser = users.filter(value =>value.email == user.email ? true : false)
+      const findUser = users.filter(value =>
+        value.email == user.email ? true : false
+      )
       if (findUser.length > 0) {
-          setMessages({
+        setMessages({
           ...messages,
-          text:'Email đã tồn tại',
-          visible:true,
-          isError:true
+          text: 'Email đã tồn tại',
+          visible: true,
+          isError: true
         })
-      } 
-      else 
-        users.push(user)
+      } else {
+        users.push({...user,id:'user'+(users.length+1)})
+        setMessages({
+          ...messages,
+          text:'Thêm tài khoản thành công',
+          visible:true
+        })
+        localStorage.setItem('USERS',JSON.stringify(users))
+      }
     }
   }
 

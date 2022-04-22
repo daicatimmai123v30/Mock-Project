@@ -14,13 +14,15 @@ import {
 } from '@mui/material'
 import './Header.css'
 
+import { useNavigate } from 'react-router'
 import { AuthContext } from '../../Contexts/AuthContext'
+import { ADD_CART,REMOVE_CART } from '../../Enum/Constants'
 
 const Header = () => {
   const [visibleModel, setVisibleModel] = useState(false)
 
-  const { carts } = useContext(AuthContext)
-
+  const navigate = useNavigate();
+  const { carts, user, distpatch} = useContext(AuthContext)
   return (
     <div className='container-fluid'>
       <nav className='navbar navbar-expand-lg navbar-light bg-light px-3'>
@@ -34,8 +36,8 @@ const Header = () => {
                 <a className='nav-link' href='/'>Category Page</a>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' href='/'>
-                  Link
+                <a className='nav-link' onClick={()=>navigate('/Products?pg=1')}>
+                  Sản phẩm
                 </a>
               </li>
             </ul>
@@ -51,21 +53,28 @@ const Header = () => {
               </button>
             </form>
             <form className='d-flex align-items-center'>
-              <a className='nav-link' href='/'>
-                Login
-              </a>
-              <a className='nav-link' href='/'>
-                Logout
-              </a>
-              <ion-icon
-                class='icon-user'
-                name='person-circle-outline'
-              ></ion-icon>
-              <ion-icon
-                class='icon-cart'
-                name='cart-outline'
-                onClick={() => setVisibleModel(true)}
-              ></ion-icon>
+              {user.isAuth?(
+               <>
+                  <a className='nav-link' href='/'>
+                    Logout
+                  </a>
+                  <ion-icon
+                    class='icon-user'
+                    name='person-circle-outline'
+                  ></ion-icon>
+                  <ion-icon
+                    class='icon-cart'
+                    name='cart-outline'
+                    onClick={() => setVisibleModel(true)}
+                  ></ion-icon>
+                 
+               </>
+              ):(
+                <a className='nav-link' href='/Login'>
+                  Login
+                </a>
+              )}
+           
             </form>
           </div>
         </div>
@@ -93,7 +102,8 @@ const Header = () => {
           </Typography>
           <div className='w-75 bg-dark border border-dark'></div>
           <List sx={{ width: '100%', minHeight: '80%', overflowY: 'auto' }}>
-            {carts.map((value, index) => (
+            {carts?.filter(value=>value.idUser===user.info.id?true:false)[0]?.items
+                  ?.map((value, index) => (
               <ListItem key={index}>
                 <ListItemAvatar>
                   <Avatar
@@ -112,9 +122,9 @@ const Header = () => {
                   size='small'
                   color='inherit'
                 >
-                  <Button>+</Button>
+                  <Button onClick={()=>distpatch(ADD_CART,value)}>+</Button>
                   <Button>{value.amount}</Button>
-                  <Button>-</Button>
+                  <Button onClick={()=>distpatch(REMOVE_CART,value)}>-</Button>
                 </ButtonGroup>
               </ListItem>
             ))}

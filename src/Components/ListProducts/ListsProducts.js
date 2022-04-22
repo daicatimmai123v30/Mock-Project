@@ -21,7 +21,7 @@ const ListsProducts = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
 
-  const {distpatch,carts} = useContext(AuthContext);
+  const {distpatch,carts,user} = useContext(AuthContext);
   console.log(carts)
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('PRODUCTS')).splice((Number(search.split('=')[1])-1)*8,8);
@@ -29,7 +29,10 @@ const ListsProducts = () => {
   }, [])
 
   const onAddToCart = (product)=>{
-    distpatch(ADD_CART,product)
+    if(user.isAuth)
+      distpatch(ADD_CART,product)
+    else
+      alert('Bạn phải đăng nhập')
   }
 
   return (

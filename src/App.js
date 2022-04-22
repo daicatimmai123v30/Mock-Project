@@ -45,18 +45,14 @@ function App() {
           <Routes>
             <Route  path="/Signup" element={
               <>
-                <Header/>
                 <SignUp/>
-                <Footer/>
               </>
             }/>
           </Routes>
           <Routes>
             <Route  path="/Login" element={
               <>
-                <Header/>
                 <Login/>
-                <Footer/>
               </>
             }/>
           </Routes>
