@@ -8,6 +8,10 @@ import {
 } from "react-router-dom";
 import Homepage from './Components/Homepage/Homepage'
 import ListsProducts from './Components/ListProducts/ListsProducts';
+import CategoryMenu from './Components/Category/CategoryMenu'
+import CategoryList from './Components/Category/CategoryList';
+import Login from './Components/Login-SignUp/Login'
+import SignUp from './Components/Login-SignUp/SignUp'
 
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
@@ -22,24 +26,43 @@ function App() {
   return (
        <div className="App"> 
         <BrowserRouter>
+        <Header/>
           <Routes>
             <Route  path="/Homepage" element={
               <>
-                <Header/>
                 <Homepage/>
-                <Footer/>
               </>
             }/>
           </Routes>
           <Routes>
             <Route  path="/Products" element={
               <>
-                <Header/>
-                <ListsProducts/>
-                <Footer/>
+                <CategoryMenu/>
               </>
             }/>
           </Routes>
+          <Routes>
+            <Route  path="/Categorys" element={
+              <>
+                <CategoryList/>
+              </>
+            }/>
+          </Routes>
+          <Routes>
+            <Route  path="/Login" element={
+              <>
+                <Login/>
+              </>
+            }/>
+          </Routes>
+          <Routes>
+            <Route  path="/SignUp" element={
+              <>
+                <SignUp/>
+              </>
+            }/>
+          </Routes>
+          <Footer/>
         </BrowserRouter>
       </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Modal,
   Box,
@@ -16,7 +17,7 @@ import './Header.css'
 
 import { AuthContext } from '../../Contexts/AuthContext'
 
-const Header = () => {
+const Header = (props) => {
   const [visibleModel, setVisibleModel] = useState(false)
 
   const { carts } = useContext(AuthContext)
@@ -25,18 +26,14 @@ const Header = () => {
     <div className='container-fluid'>
       <nav className='navbar navbar-expand-lg navbar-light bg-light px-3'>
         <div className='container-fluid'>
-          <a className='navbar-brand' href='#'>
-            Home
-          </a>
+        <Link className='nav-link' to="/Homepage">Homepage</Link>
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
-                <a className='nav-link'>Category Page</a>
+                <Link className='nav-link' to="/Categorys">Category Page</Link>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' href='#'>
-                  Link
-                </a>
+              <Link className='nav-link' to="/Products">Product</Link>
               </li>
             </ul>
             <form className='d-flex'>
@@ -50,12 +47,8 @@ const Header = () => {
               </button>
             </form>
             <form className='d-flex align-items-center'>
-              <a className='nav-link' href='#'>
-                Login
-              </a>
-              <a className='nav-link' href='#'>
-                Logout
-              </a>
+            <Link className='nav-link' to="/Login">Login</Link>
+            <Link className='nav-link' to="/SignUp">SignUp</Link>
               <ion-icon
                 class='icon-user'
                 name='person-circle-outline'

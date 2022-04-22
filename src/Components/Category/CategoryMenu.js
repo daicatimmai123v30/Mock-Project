@@ -9,6 +9,8 @@ import { Container } from '@mui/material';
 import { Grid } from '@mui/material';
 import { ListItemText ,ListItemIcon,Divider} from '@mui/material';
 import { Check } from '@mui/icons-material';
+import ListsProducts from '../ListProducts/ListsProducts'
+
 import CategoryMenuCard from './CategoryMenuCard';
 
 const BASE_DATA = [
@@ -26,9 +28,6 @@ export default function CategoryMenu() {
     const [categoryList,setCategoryList] = React.useState(BASE_DATA)
   return (
     <>
-    <Typography component="h" variant="h5" align="center">
-            Menu lớn ở dây
-      </Typography>
       <Box sx={{
         p:2
       }}>
@@ -45,7 +44,9 @@ export default function CategoryMenu() {
           ))}
       </MenuList>
         </Grid>
-        <Grid item xs={10}>hiển thị sản phẩm</Grid>
+        <Grid item xs={10}>
+          <ListsProducts/>
+        </Grid>
       </Grid>
     </Box>
     </>

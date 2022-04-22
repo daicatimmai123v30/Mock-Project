@@ -1,11 +1,13 @@
 import React from 'react';
-import { MenuItem,ListItemText,Divider } from '@mui/material';
+import { MenuItem,ListItemText,Divider,Typography } from '@mui/material';
 
 function CategoryMenuCard(props) {
     return (
         <>
             <MenuItem>
-            <ListItemText inset>{props.category.name}</ListItemText>
+            <Typography component="h" variant="h5"  >
+                        {props.category.name}
+            </Typography>
             </MenuItem>
             <Divider />
         </>
