@@ -10,7 +10,7 @@ export const DELETE_CART = "DELETE_CART"
 export const PRODUCTS = [
     {
         id:'product1',
-        title:'Tiered Hem Maxi Dress',
+        title:'Tiered Hem Maxi Dress 1',
         description:'Tiered Hem Maxi Dress',
         price:98000,
         images:[

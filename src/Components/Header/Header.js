@@ -18,11 +18,17 @@ import { useNavigate } from 'react-router'
 import { AuthContext } from '../../Contexts/AuthContext'
 import { ADD_CART,REMOVE_CART, USER_LOGOUT } from '../../Enum/Constants'
 
-const Header = () => {
-  const [visibleModel, setVisibleModel] = useState(false)
+const Header = ({onSearch}) => {
+  const [visibleModel, setVisibleModel] = useState(false);
 
   const navigate = useNavigate();
-  const { carts, user, distpatch} = useContext(AuthContext)
+  const { carts, user, distpatch} = useContext(AuthContext);
+  const handleChange=(e)=>{
+    e.preventDefault();
+   const key=e.target.value;
+    //setValue(key)
+    onSearch(e.target.value);
+  }
   return (
     <div className='container-fluid'>
       <nav className='navbar navbar-expand-lg navbar-light bg-light px-3'>
@@ -51,7 +57,8 @@ const Header = () => {
                 className='form-control me-2'
                 type='search'
                 placeholder='Search'
-                
+                onChange={handleChange
+                }
               />
               <button className='btn btn-outline-success' type='submit'>
                 Search
