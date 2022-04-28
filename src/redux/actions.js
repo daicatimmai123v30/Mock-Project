@@ -13,3 +13,11 @@ export const filterCategories =(selects)=> {
 }
     
 }
+
+export const sortProducts =(selects)=> {
+    return {
+        type: 'products/sort',
+        payload:selects
+}
+    
+}

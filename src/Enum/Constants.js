@@ -127,7 +127,7 @@ export const PRODUCTS = [
     },
     {
         id:'product11',
-        title:'Tiered Hem Maxi Dress',
+        title:'aTiered Hem Maxi Dress',
         description:'Tiered Hem Maxi Dress',
         price:98000,
         images:[

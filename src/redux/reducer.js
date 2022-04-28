@@ -2,7 +2,8 @@ import {PRODUCTS,CATEGORIES} from '../Enum/Constants'
 const initState={
     filters:{
         search:'',
-        selectType:[]
+        selectType:[],
+        sort: 'price'
     },
     categories:CATEGORIES,
     productsList:PRODUCTS
@@ -19,6 +20,14 @@ const rootReducer =(state=initState,action) => {
                     search: action.payload
                 }
             }
+            case 'products/sort':
+                return {
+                    ...state,
+                    filters:{
+                        ...state.filters,
+                        sort: action.payload
+                    }
+                }
             case 'categories/search':
                 return {
                     ...state,
