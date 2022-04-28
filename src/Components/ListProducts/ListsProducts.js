@@ -8,48 +8,61 @@ import {
   Stack,
   Pagination,
   CardMedia
-} from '@mui/material'
-import { useLocation,useNavigate } from 'react-router-dom'
+} from '@mui/material';
 
-import { AuthContext } from '../../Contexts/AuthContext'
-import { ADD_CART } from '../../Enum/Constants'
+import { useLocation,useNavigate } from 'react-router-dom'
+import {useDispatch,useSelector} from 'react-redux'
+
+
 
 import './ListProducts.css'
+import Category from '../CategoryPage/CategoryPage';
+import { productsListSelector,searchValueSelector } from '../../redux/selectors'
 
 const ListsProducts = () => {
   const [products, setProducts] = useState([])
-  const { search } = useLocation();
+  const [page,setPage] =useState(0);
+  
   const navigate = useNavigate();
+  const listProducts= useSelector(productsListSelector);
+  const searchValue= useSelector(searchValueSelector);
+  console.log("value ",searchValue);
 
-  const {distpatch,carts,user} = useContext(AuthContext);
-  const onChangePage=()=>{
+
+  useEffect(() =>{
+    let tam=listProducts.map(product => product);
+    const result=tam.splice(Number(page-1)*8,8);
+    setPage(1);
+    navigate(`/Products?`);
+    setProducts(result);
+  },[listProducts]);
+  useEffect(() =>{
+    let tam=listProducts.map(product => product);
+    const result=tam.splice(Number(page-1)*8,8);
     
-  }
-  useEffect(() => {
-    const response = JSON.parse(localStorage.getItem('PRODUCTS')).splice((Number(search.split('=')[1])-1)*8,8);
-    setProducts(response)
-  }, [])
-
-  const onAddToCart = (product)=>{
-    if(user.isAuth)
-      distpatch(ADD_CART,product)
-    else
-      alert('Bạn phải đăng nhập')
-  }
-
+    setProducts(result);
+  },[page]);
+  
   return (
     <div className='list-products container-fluid'>
       <div className='products'>
         <div className='my-3'>
+          <Category></Category>
           <Typography align='right' variant='subtitle1'>
-            Sản phẩm
+         
+            
+              
+            
+           Sản phẩm
           </Typography>
+          
           <div className='w-100 border border-dark my-1'></div>
+          
         </div>
         <div className='box-products'>
-          {products.map((value, index) => (
+          {products.map((value) => (
             <Card
-              key={index}
+              key={value.id}
               sx={{
                 width: 250,
                 float: 'left',
@@ -79,7 +92,7 @@ const ListsProducts = () => {
               </CardContent>
               <CardActions sx={{justifyContent:'space-around'}}>
                 <Button size='small'>Xem chi tiết</Button>
-                <Button size='small' color='secondary' onClick={()=>{onAddToCart(value)}}>Thêm Vào</Button>
+                <Button size='small' color='secondary' >Thêm Vào</Button>
               </CardActions>
             </Card>
           ))}
@@ -89,13 +102,13 @@ const ListsProducts = () => {
       <div className='pagination'>
         <Stack spacing={1}>
           <Pagination
-            count={parseInt(JSON.parse(localStorage.getItem('PRODUCTS')).length/8 + 1)}
+            count={parseInt(listProducts.length/8 + 1)}
             color='secondary'
-            page={Number(search.split('=')[1])}
+            
+            page={Number(page)}
             onChange={(event, number) => {
                 navigate(`/Products?pg=${number}`);
-                const response = JSON.parse(localStorage.getItem('PRODUCTS')).splice((number-1)*8,8);
-                setProducts(response)
+                setPage(number);
             }}
           />
         </Stack>

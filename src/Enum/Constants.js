@@ -18,12 +18,12 @@ export const PRODUCTS = [
             'https://www.gap.com/webcontent/0028/877/249/cn28877249.jpg'
         ],
         size:['XS','S','ML','XL','XXL'],
-        idCategory:'category2',
+        idCategory:'category1',
 
     },
     {
         id:'product2',
-        title:'Tiered Hem Maxi Dress',
+        title:'Tiered Hem Maxi Dress 2',
         description:'Tiered Hem Maxi Dress',
         price:98000,
         images:[
@@ -36,7 +36,7 @@ export const PRODUCTS = [
     },
     {
         id:'product3',
-        title:'Tiered Hem Maxi Dress',
+        title:'Tiered Hem Maxi Dress 3',
         description:'Tiered Hem Maxi Dress',
         price:98000,
         images:[
@@ -44,12 +44,12 @@ export const PRODUCTS = [
             'https://www.gap.com/webcontent/0028/874/684/cn28874684.jpg'
         ],
         size:['XS','S','ML','XL','XXL'],
-        idCategory:'category2',
+        idCategory:'category3',
 
     },
     {
         id:'product4',
-        title:'Tiered Hem Maxi Dress',
+        title:'Tiered Hem Maxi Dress 4',
         description:'Tiered Hem Maxi Dress',
         price:98000,
         images:[
@@ -62,7 +62,7 @@ export const PRODUCTS = [
     },
     {
         id:'product6',
-        title:'Tiered Hem Maxi Dress',
+        title:'Tiered Hem Maxi Dress 5',
         description:'Tiered Hem Maxi Dress',
         price:98000,
         images:[

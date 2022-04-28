@@ -10,24 +10,24 @@ const Homepage = () => {
   },[])
   return (
     <div className='homepage container-fluid'>
-      <div class='banner'>
-        <div class='banner-title'>
+      <div className='banner'>
+        <div className='banner-title'>
           <p>Banner Title</p>
         </div>
-        <div class='banner-description'>
+        <div className='banner-description'>
           <span>New (and improved) swim styles for every body.</span>
         </div>
-        <div class='banner-btn'>
-          <button class='btn'>
+        <div className='banner-btn'>
+          <button className='btn'>
             <span>Buy Something</span>
           </button>
-          <button class='btn'>
+          <button className='btn'>
             <span>Learn more</span>
           </button>
         </div>
       </div>
-      <div class='container-card'>
-        <div class='overview-card'>
+      <div className='container-card'>
+        <div className='overview-card'>
           <Card
             title='The Cotton Box-Cut Shirt'
             src='https://media.everlane.com/image/upload/c_scale,dpr_1.0,f_auto,q_auto,w_auto/c_limit,w_1100/v1/i/588b11ad_6b84.jpg'
